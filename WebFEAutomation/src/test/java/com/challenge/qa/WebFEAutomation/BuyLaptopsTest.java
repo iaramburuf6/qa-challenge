@@ -8,7 +8,7 @@ import com.challenge.qa.WebFEAutomation.driver.SeleniumDriver;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ AddLaptopsTest.class, DeleteLaptopsOnCartTest.class })
+@Suite.SuiteClasses({ AddLaptopsTest.class, DeleteLaptopsOnCartTest.class, PurchaseTest.class})
 public class BuyLaptopsTest {
 	
 	@AfterClass
