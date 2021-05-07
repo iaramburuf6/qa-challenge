@@ -34,8 +34,8 @@ public class HomePage {
 		driver.findElement(homeProductXpath).click();
 	}
 	
-	@Then("user add to cart the product")
-	public void user_add_to_cart_the_product() {
+	@Then("user add the product to cart")
+	public void user_add_the_product_to_cart() {
 	    By addToCart = By.xpath("//a[text() = 'Add to cart']");
 	    wait.until(ExpectedConditions.elementToBeClickable(addToCart));
 		driver.findElement(addToCart).click();

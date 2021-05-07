@@ -8,13 +8,21 @@ Feature: Navigation through laptop category
     Then user access to the desired web page
 
     @Add
-    Scenario Outline: Add products on cart
-    Given user access to home page
+    Scenario Outline: Add laptops on cart
+    Given user access to "Home" page
     When user access to "Laptops" category
-    Then user select product "<product>"
-    When user add to cart the product
+    Then user select product "<laptop>"
+    When user add the product to cart
     Then user close pop-up   
     Examples:
-      | product      |
+      | laptop       |
       |Sony vaio i5  |
+      |Dell i7 8gb   |
+      
+    @Delete
+    Scenario Outline: Delete laptops on cart
+    Given user access to "Cart" page
+    Then user delete on cart the product "<laptop>"
+    Examples:
+      | laptop       |
       |Dell i7 8gb   |
