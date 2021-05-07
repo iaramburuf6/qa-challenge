@@ -14,7 +14,7 @@ public class PropertiesByProfile extends Properties {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Key de la variable de sistema que establece el perfil
+     * System variable key
      */
     private static final String PROFILE_PROPERTY_KEY = "profile";
 

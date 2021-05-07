@@ -18,21 +18,21 @@ import com.challenge.qa.WebFEAutomation.properties.PropertiesByProfile;
 public class SeleniumDriver {
 
 	/**
-     * Url de destino para las pruebas
+     * Test destination url
      */
     private static final String targetUrl;
     
     /**
-     * Flag que determina si la ejecución de los tests es headless o no
+     * Flag to determinate if the test execution is headless or not
      */
     private static final Boolean headless;
     /**
-     * Flag que determina el navegador a usar
+     * Browser used in tests
      */
     private static final String browser;
 
     /**
-     * Driver para navegador actual
+     * Driver for current browser
      */
     private static WebDriver currentDriver;
     
@@ -57,11 +57,10 @@ public class SeleniumDriver {
     }
 
     public static void createDefaultDriver() {
-        if (currentDriver != null) {
-            close();
+        if (currentDriver == null) {
+            createDriver(browser);
         }
-        
-        createDriver(browser);
+        getCurrentDriver();
     }
 
     public static void createDriver(String browser) {
