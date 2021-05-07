@@ -12,3 +12,8 @@ __MACOSX
 Icon?
 ehthumbs.db
 Thumbs.db
+
+##################################
+# Maven
+
+target/
