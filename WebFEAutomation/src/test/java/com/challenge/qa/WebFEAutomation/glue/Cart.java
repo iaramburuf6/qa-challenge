@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.challenge.qa.WebFEAutomation.driver.SeleniumDriver;
 import com.google.common.base.Objects;
@@ -17,6 +19,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Cart {
+	
+	final Logger LOG = LoggerFactory.getLogger(Cart.class);
 
 	private WebDriver driver;
     private WebDriverWait wait;
@@ -48,7 +52,7 @@ public class Cart {
 		
 		int priceColumnIndex = 0;
 		for (int i = 1; i <= cartListColumnElements.size(); i++) {
-			WebElement cartListColumnElement = cartListColumnElements.get(0);
+			WebElement cartListColumnElement = cartListColumnElements.get(i - 1);
 			String cartListColumName = cartListColumnElement.getText();
 			if (Objects.equal("Price", cartListColumName)) {
 				priceColumnIndex = i;
@@ -97,7 +101,8 @@ public class Cart {
 		
 		getPurchaseData(purchaseData);
 		
-		assertEquals("", this.purchaseAmount, 0);
+		assertEquals("The purchase amount (" + this.purchaseAmount + ") is not equal than cart amount ("
+				+ this.cartAmount + ")", this.purchaseAmount, this.cartAmount, 0.01);
 	}
 	
 	@Then("user click on ok")
@@ -109,19 +114,20 @@ public class Cart {
 	
 	private void getPurchaseData(String purchaseData) {
 		String[] data = purchaseData.split("\n");
-		int valueIndexOf = 0;
+		
 		for (int i = 0; i < data.length; i++) {
 			String atributeData = data[i];
 			if (atributeData.contains("Id: ")) {
-				valueIndexOf = atributeData.indexOf("Id: ") + 1;
-				String purchaseIdString = atributeData.substring(valueIndexOf);
+				String purchaseIdString = atributeData.replace("Id: ", "");
 				this.purchaseId = Double.valueOf(purchaseIdString);
 			}
 			if (atributeData.contains("Amount: ")) {
-				valueIndexOf = atributeData.indexOf("Amount: ") + 1;
-				String purchaseAmountString = atributeData.substring(valueIndexOf);
+				String purchaseAmountString = atributeData.replace("Amount: ", "");
+				purchaseAmountString = purchaseAmountString.replace(" USD", "");
 				this.purchaseAmount = Double.valueOf(purchaseAmountString);
 			}
 		}
+		LOG.debug("The purchase id is " + this.purchaseId);
+		LOG.debug("The purchase amount is " + this.purchaseAmount);
 	}
 }
