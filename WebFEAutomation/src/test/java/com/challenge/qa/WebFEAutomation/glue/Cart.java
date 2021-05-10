@@ -102,7 +102,7 @@ public class Cart {
 		getPurchaseData(purchaseData);
 		
 		assertEquals("The purchase amount (" + this.purchaseAmount + ") is not equal than cart amount ("
-				+ this.cartAmount + ")", this.purchaseAmount, this.cartAmount, 0.01);
+				+ this.cartAmount + ")", this.cartAmount, this.purchaseAmount, 0.01);
 	}
 	
 	@Then("user click on ok")
