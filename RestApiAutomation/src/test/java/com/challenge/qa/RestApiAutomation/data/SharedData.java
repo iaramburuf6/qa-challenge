@@ -7,6 +7,8 @@ public class SharedData {
     private String targetUrl;
     
     private Pet pet;
+    
+    private int responseStatusCode;
 
 	public String getTargetUrl() {
 		return targetUrl;
@@ -22,6 +24,14 @@ public class SharedData {
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+
+	public int getResponseStatusCode() {
+		return responseStatusCode;
+	}
+
+	public void setResponseStatusCode(int responseStatusCode) {
+		this.responseStatusCode = responseStatusCode;
 	}
 }
 
