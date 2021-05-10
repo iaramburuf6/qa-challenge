@@ -1,7 +1,7 @@
 #Author: Iñaki Aramburu
 
 @Laptop
-Feature: Navigation through laptop category
+Feature: Buy laptop
 
     Background: 
     Given user open the navigator
@@ -26,3 +26,19 @@ Feature: Navigation through laptop category
     Examples:
       | laptop       |
       |Dell i7 8gb   |
+      
+    @Purchase
+    Scenario: Purchase laptops
+    Given user access to "Cart" page
+    Then user check cart data
+    Then user click on place order
+    And user fill "name" field as "John"
+    And user fill "country" field as "Irland"
+    And user fill "city" field as "Dublin"
+    And user fill "card" field as "34 423 2323"
+    And user fill "month" field as "January"
+    And user fill "year" field as "2022"
+    When user click on purchase
+    Then user check amount equals to expected
+    And user click on ok
+    
