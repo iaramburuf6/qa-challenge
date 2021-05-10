@@ -29,6 +29,8 @@ import com.challenge.qa.RestApiAutomation.model.entity.PetStatus;
 import com.challenge.qa.RestApiAutomation.model.entity.Tag;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class PetService {
@@ -41,8 +43,6 @@ public class PetService {
 	
 	private final ObjectMapper mapper;
 	
-	private long petId;
-	
 	public PetService(SharedData sharedData) {
 		this.sharedData = sharedData;
 		this.mapper = new ObjectMapper();
@@ -51,51 +51,62 @@ public class PetService {
 	
 	@When("user get {string} pets")
 	public void user_get_pets(String string) throws ClientProtocolException, IOException {
-	    HttpGet request = new HttpGet(sharedData.getTargetUrl() + "pet/findByStatus?status=" + string);
-	    
+	    HttpGet request = new HttpGet(sharedData.getTargetUrl() + "pet/findByStatus?status=" + string);	    
 	    try (CloseableHttpResponse response = httpClient.execute(request)) {
 	    	
 	    	// Get HttpResponse Status
-	    	int responseStatusCoderesponse = response.getStatusLine().getStatusCode();
+	    	int responseStatusCodeResponse = response.getStatusLine().getStatusCode();	    	
+	    	sharedData.setResponseStatusCode(responseStatusCodeResponse);
 	    	
-	    	// Assert expected result code
-	    	assertEquals("The response status is " + responseStatusCoderesponse, 200, responseStatusCoderesponse);
-
             HttpEntity entity = response.getEntity();
             if (entity != null) {
             	// Assert expected result by mapping to custom entity
             	Arrays.asList(mapper.readValue(EntityUtils.toString(entity), Pet[].class));
             }
-
         }
 	}
 	
-	@When("user create new pet")
-	public void user_create_new_pet() {
-		HttpPost request = new HttpPost(sharedData.getTargetUrl() + "pet");
+	@Then("user check response status code equal to {string}")
+	public void user_check_response_status_code_equal_to(String string) {	
+		int responseStatusCodeResponse = sharedData.getResponseStatusCode();
 		
+    	// Assert expected result code
+    	assertEquals("The response status is " + responseStatusCodeResponse, Integer.parseInt(string), responseStatusCodeResponse);
+	}
+	
+	@Given("user set new pet")
+	public void user_set_new_pet() {
 		// Create new pet
 		Pet pet = new Pet();
 		pet.setName("doogie");
-		
+
 		Category category = new Category();
 		category.setId(1001);
 		category.setName("Animal");
 		pet.setCategory(category);
-		
+
 		List<String> photoUrls = new ArrayList<>();
 		photoUrls.add("img/test/dog.jpeg");
 		photoUrls.add("img/test/dog1.jpeg");
 		pet.setPhotoUrls(photoUrls);
-		
+
 		List<Tag> tags = new ArrayList<>();
 		Tag tag = new Tag();
 		tag.setId(0);
 		tag.setName("/newPetAdded");
 		tags.add(tag);
 		pet.setTags(tags);
-		
+
 		pet.setStatus(PetStatus.AVAILABLE);
+		
+		sharedData.setPet(pet);
+	}
+	
+	@When("user create new pet")
+	public void user_create_new_pet() {
+		HttpPost request = new HttpPost(sharedData.getTargetUrl() + "pet");
+		
+		Pet pet = sharedData.getPet();
 		
 		try {
 			String jsonBody = mapper.writeValueAsString(pet);
@@ -107,10 +118,8 @@ public class PetService {
 			HttpResponse response = httpClient.execute(request);
 			
 			// Get HttpResponse Status
-	    	int responseStatusCoderesponse = response.getStatusLine().getStatusCode();
-	    	
-	    	// Assert expected result code
-	    	assertEquals("The new Pet is added", 200, responseStatusCoderesponse);
+	    	int responseStatusCodeResponse = response.getStatusLine().getStatusCode();
+	    	sharedData.setResponseStatusCode(responseStatusCodeResponse);
 	    	
 	    	HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -118,11 +127,9 @@ public class PetService {
             	Pet newPet = mapper.readValue(EntityUtils.toString(entity), Pet.class);
             	sharedData.setPet(newPet);
             }
-
 		} catch (IOException ioe) {
 			LOG.debug("A exception has ocurred: " + ioe);
 		}
-		
 	}
 	
 	@When("user update the created pet")
@@ -142,10 +149,8 @@ public class PetService {
 			HttpResponse response = httpClient.execute(request);
 			
 			// Get HttpResponse Status
-	    	int responseStatusCoderesponse = response.getStatusLine().getStatusCode();
-	    	
-	    	// Assert expected result code
-	    	assertEquals("The pet is updated", 200, responseStatusCoderesponse);
+			int responseStatusCodeResponse = response.getStatusLine().getStatusCode();
+	    	sharedData.setResponseStatusCode(responseStatusCodeResponse);
 	    	
 	    	HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -168,10 +173,8 @@ public class PetService {
 			HttpResponse response = httpClient.execute(request);
 			
 			// Get HttpResponse Status
-	    	int responseStatusCoderesponse = response.getStatusLine().getStatusCode();
-	    	
-	    	// Assert expected result code
-	    	assertEquals("The pet is deleted", 200, responseStatusCoderesponse);
+			int responseStatusCodeResponse = response.getStatusLine().getStatusCode();
+	    	sharedData.setResponseStatusCode(responseStatusCodeResponse);
 
 		} catch (IOException ioe) {
 			LOG.debug("A exception has ocurred: " + ioe);

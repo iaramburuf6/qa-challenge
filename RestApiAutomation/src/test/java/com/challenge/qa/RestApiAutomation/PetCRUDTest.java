@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(publish = true,features = {"src/test/resources/features"}, glue = {"com.challenge.qa.RestApiAutomation.glue"},
         		plugin = { "de.monochromata.cucumber.report.PrettyReports:target/cucumber-reports" },
-        tags =  "@CRUD", monochrome = true)
+        tags =  "@CRUD and @Pet", monochrome = true)
 public class PetCRUDTest {
 
 }
