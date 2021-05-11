@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.challenge.qa.WebFEAutomation.driver.SeleniumDriver;
 import com.google.common.base.Objects;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -25,6 +26,7 @@ public class Cart {
 	private WebDriver driver;
     private WebDriverWait wait;
     
+    private int numberCartProducts;
     private double cartAmount;
     private double purchaseId;
     private double purchaseAmount;
@@ -32,16 +34,43 @@ public class Cart {
 	public Cart() {
 		this.driver = SeleniumDriver.getCurrentDriver();;
 		this.wait = new WebDriverWait(driver, 20);
+		numberCartProducts = 0;
 		this.cartAmount = 0.0;
 		this.purchaseId = 0.0;
 		this.purchaseAmount = 0.0;
 	}
 	
+	@When("user check added products to cart")
+	public void user_check_added_products_to_cart() {
+		By cartListRowXpath = By.xpath("//h2[text() = 'Products']//..//table/tbody/tr"); 
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartListRowXpath));
+		List<WebElement> cartListRowElements = driver.findElements(cartListRowXpath);
+		this.numberCartProducts = cartListRowElements.size();
+	}
+	
 	@Then("^user delete on cart the product \"([^\"]*)\"$")
 	public void user_delete_on_cart_the_product(String product) {
-		By deletProductXpath = By.xpath("//td[text()='" + product + "']//..//a[text()='Delete']"); 
-		wait.until(ExpectedConditions.elementToBeClickable(deletProductXpath));
-		driver.findElement(deletProductXpath).click();
+		By deleteProductXpath = By.xpath("//td[text()='" + product + "']//..//a[text()='Delete']"); 
+		wait.until(ExpectedConditions.elementToBeClickable(deleteProductXpath));
+		driver.findElement(deleteProductXpath).click();
+		
+		// Wait until cart page is load
+		if (this.numberCartProducts > 0) {
+			By cartProductTableBodyXpath = By.xpath("//tbody[@id = 'tbodyid']/tr");
+			wait.until(ExpectedConditions.numberOfElementsToBe(cartProductTableBodyXpath, this.numberCartProducts - 1));
+		}
+	}
+	
+	@And("user check the product has been deleted")
+	public void user_check_the_product_has_been_deleted() {
+		By cartListRowXpath = By.xpath("//h2[text() = 'Products']//..//table/tbody/tr"); 
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cartListRowXpath));
+		List<WebElement> cartListRowElements = driver.findElements(cartListRowXpath);
+		
+		int expectedProducts = this.numberCartProducts - 1;
+		
+		assertEquals("The number of products on carts are " + cartListRowElements.size() + ". Expected: "
+				+ expectedProducts, expectedProducts, cartListRowElements.size());
 	}
 	
 	@Then("user check cart data")

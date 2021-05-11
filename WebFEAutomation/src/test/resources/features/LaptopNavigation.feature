@@ -22,7 +22,9 @@ Feature: Buy laptop
     @Delete
     Scenario Outline: Delete laptops on cart
     Given user access to "Cart" page
+    When user check added products to cart
     Then user delete on cart the product "<laptop>"
+    And user check the product has been deleted
     Examples:
       | laptop       |
       |Dell i7 8gb   |
