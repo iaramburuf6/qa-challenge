@@ -8,8 +8,6 @@
 	<version>0.0.1</version>
 
 	<name>WebFEAutomation</name>
-	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,14 +16,17 @@
 		<maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
 		<maven.compiler.argument.target>${maven.compiler.target}</maven.compiler.argument.target>
 
+		<version.compiler.plugin>3.7.0</version.compiler.plugin>
+		
+		<junit.version>4.11</junit.version>
+
 		<selenium.java.version>3.141.59</selenium.java.version>
 
 		<cucumber.gherkin.version>18.1.1</cucumber.gherkin.version>
 		<cucumber.java.version>6.10.3</cucumber.java.version>
 		<cucumber.jvm.version>1.0.6</cucumber.jvm.version>
 		<cucumber.junit.version>6.10.3</cucumber.junit.version>
-
-		<version.compiler.plugin>3.7.0</version.compiler.plugin>
+		
 		<webdrivermanager.version>3.4.0</webdrivermanager.version>
 		
 		<reporting.plugin.version>4.0.102</reporting.plugin.version>
@@ -37,7 +38,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

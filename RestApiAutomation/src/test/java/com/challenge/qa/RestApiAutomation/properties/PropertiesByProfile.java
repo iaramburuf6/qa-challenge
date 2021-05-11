@@ -1,4 +1,4 @@
-package com.challenge.qa.WebFEAutomation.properties;
+package com.challenge.qa.RestApiAutomation.properties;
 
 import java.io.IOException;
 import java.io.InputStream;
