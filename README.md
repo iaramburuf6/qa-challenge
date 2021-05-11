@@ -1,10 +1,18 @@
 # qa-challenge
 
-qa-challenge 
+qa-challenge contains two test project, **WebFEAutomation** and **RestApiAutomation**.
 
 ### WebFEAutomation
 
 WebFEAutomation is maven project to test pet store [api](https://www.demoblaze.com/index.html) developed into Eclipse tool. The tests have been developed for select, add, delete and purchase laptops functionalities.
+
+See [WebFEAutomation](https://github.com/iaramburuf6/qa-challenge/blob/master/WebFEAutomation/README.md)
+
+### RestApiAutomation
+
+RestApiAutomation is maven project to test pet store [api](https://petstore.swagger.io) developed into Eclipse tool. The tests have been developed for create, update and delete pets, and for get all available pets functionalities.
+
+See [RestApiAutomation](https://github.com/iaramburuf6/qa-challenge/blob/master/RestApiAutomation/README.md)
 
 ## Prerequisites
 
@@ -17,40 +25,16 @@ Make sure you have installed all of the following prerequistes on your developme
 * Cucumber-Eclipse plugin - [Download & Install Cucumber-Eclipse plugin](https://www.javatpoint.com/install-cucumber-eclipse-plugin)
 * Selenium - [Download & Install Selenium](https://www.selenium.dev/downloads/)
 
-## Downloading WebFEAutomation
+## Downloading qa-challenge
 
-The recommended way to get RestApiAutomation is to use git to directly clone the WebFEAutomation repository:
+The recommended way to get qa-challenge is to use git to directly clone the qa-challenge repository:
 
 ```bash
-$ git clone https://github.com/iaramburuf6/qa-challenge.git webFEAutomation
+$ git clone https://github.com/iaramburuf6/qa-challenge.git qa-challenge
 ```
 
-This will clone the latest version of the RestApiAutomation repository to a **webFEAutomation** folder.
-
-## Quick Install
-
-Once you've downloaded the WebFEAutomation and installed all the prerequisites, you can launch test via:
-
-* You can run into **webFEAutomation** folder the following command into command line:
-```bash
-$ mvn clean install
-```
-* You can [add](https://www.codejava.net/ides/eclipse/import-existing-projects-into-eclipse-workspace) the project to Eclipse tool.
-  Once you've imported the project, you can run PetCRUDTest.java class as junit test.
-  
-## Reports
-
-Once the project tests are launched, the tests create several reports using a [cucumber-reporting-plugin.](https://gitlab.com/monochromata-de/cucumber-reporting-plugin) The reports are created on **/target/cucumber-reports/cucumber-html-reports/** project's folder. The main report is called **overview-features.html**.
-  
-## Future Improvements
-  
-In the future, there will be the following improvements:
-  
-* Make project multi-environment
-* Increase the number of checks and logs
-* Improve cucumber reports
-* ...
+This will clone the latest version of the qa-challenge repository to a **qa-challenge** folder.
 
 ## License
 
-[MIT](https://github.com/iaramburuf6/qa-challenge/edit/develop/RestApiAutomation/License)
+[MIT](https://github.com/iaramburuf6/qa-challenge/blob/master/RestApiAutomation/License)
