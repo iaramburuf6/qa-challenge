@@ -12,16 +12,6 @@ Make sure you have installed all of the following prerequistes on your developme
 * Eclipse - [Download & Install Eclipse](https://www.eclipse.org/downloads/packages/release/kepler/sr1/eclipse-ide-java-developers)
 * Cucumber-Eclipse plugin - [Download & Install Cucumber-Eclipse plugin](https://www.javatpoint.com/install-cucumber-eclipse-plugin)
 
-## Downloading RestApiAutomation
-
-The recommended way to get RestApiAutomation is to use git to directly clone the RestApiAutomation repository:
-
-```bash
-$ git clone https://github.com/iaramburuf6/qa-challenge/edit/develop/RestApiAutomation restApiAutomation
-```
-
-This will clone the latest version of the RestApiAutomation repository to a **restApiAutomation** folder.
-
 ## Quick Install
 
 Once you've downloaded the RestApiAutomation and installed all the prerequisites, you can launch test via:
@@ -48,4 +38,4 @@ In the future, there will be the following improvements:
 
 ## License
 
-[MIT](https://github.com/iaramburuf6/qa-challenge/edit/develop/RestApiAutomation/License)
+[MIT](https://github.com/iaramburuf6/qa-challenge/blob/master/RestApiAutomation/License)
