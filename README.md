@@ -24,6 +24,7 @@ Make sure you have installed all of the following prerequistes on your developme
 * Eclipse - [Download & Install Eclipse](https://www.eclipse.org/downloads/packages/release/kepler/sr1/eclipse-ide-java-developers)
 * Cucumber-Eclipse plugin - [Download & Install Cucumber-Eclipse plugin](https://www.javatpoint.com/install-cucumber-eclipse-plugin)
 * Selenium - [Download & Install Selenium](https://www.selenium.dev/downloads/)
+* Google Chrome - [Download & Install Google Chrome](https://www.google.com/intl/es/chrome/)
 
 ## Downloading qa-challenge
 
