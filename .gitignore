@@ -16,4 +16,4 @@ Thumbs.db
 ##################################
 # Maven
 
-target/
+*/target/*
