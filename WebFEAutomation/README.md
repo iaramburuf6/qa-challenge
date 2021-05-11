@@ -13,16 +13,6 @@ Make sure you have installed all of the following prerequistes on your developme
 * Cucumber-Eclipse plugin - [Download & Install Cucumber-Eclipse plugin](https://www.javatpoint.com/install-cucumber-eclipse-plugin)
 * Selenium - [Download & Install Selenium](https://www.selenium.dev/downloads/)
 
-## Downloading WebFEAutomation
-
-The recommended way to get RestApiAutomation is to use git to directly clone the WebFEAutomation repository:
-
-```bash
-$ git clone https://github.com/iaramburuf6/qa-challenge.git webFEAutomation
-```
-
-This will clone the latest version of the RestApiAutomation repository to a **webFEAutomation** folder.
-
 ## Quick Install
 
 Once you've downloaded the WebFEAutomation and installed all the prerequisites, you can launch test via:
@@ -32,7 +22,7 @@ Once you've downloaded the WebFEAutomation and installed all the prerequisites, 
 $ mvn clean install
 ```
 * You can [add](https://www.codejava.net/ides/eclipse/import-existing-projects-into-eclipse-workspace) the project to Eclipse tool.
-  Once you've imported the project, you can run PetCRUDTest.java class as junit test.
+  Once you've imported the project, you can run BuyLaptopsTest.java class as junit test.
   
 ## Reports
 
@@ -43,10 +33,11 @@ Once the project tests are launched, the tests create several reports using a [c
 In the future, there will be the following improvements:
   
 * Make project multi-environment
+* Make and improve test to be independent between different functionalities 
 * Increase the number of checks and logs
 * Improve cucumber reports
 * ...
 
 ## License
 
-[MIT](https://github.com/iaramburuf6/qa-challenge/edit/develop/RestApiAutomation/License)
+[MIT](https://github.com/iaramburuf6/qa-challenge/blob/master/WebFEAutomation/License)
