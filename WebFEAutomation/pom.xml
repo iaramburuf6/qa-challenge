@@ -5,11 +5,9 @@
 
 	<groupId>com.challenge.qa</groupId>
 	<artifactId>WebFEAutomation</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 
 	<name>WebFEAutomation</name>
-	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
